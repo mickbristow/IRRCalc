@@ -1,0 +1,96 @@
+---
+title: "IRR Calculator"
+author: "Michael Bristow"
+date: "18 December 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##  IRR Calculator - Developing Data Products - Week 4 Project
+
+This shiny project shows a comparison between calculated IRR and interpolated IRR
+
+It is used to graphically show the difference between the two figures.
+
+By adjusting the two discount factors used to be as close to the IRR, the two figures will converge
+
+
+## Usage
+
+- Default values for the cashflows for a 5 year project are laoded
+- Calculated IRR is displayed
+- Graph shows the interpolated IRR as well as the calculate IRR for comparison
+
+- The app is hosted at https://mickyb.shinyapps.io/IRRCalc2/
+- Source coded is at https://mickyb.shinyapps.io/IRRCalc2/
+
+## Code snippets
+
+```{r echo=FALSE, message=FALSE, results='asis', warning = FALSE}
+library(FinancialMath)
+library(plotly)
+```
+
+Snippet of the ui Code
+```{r eval=FALSE, echo=TRUE}
+ mainPanel(
+      h3("Calculated IRR"),
+      textOutput("calc_IRR"),
+      h3("Initial NPV"),
+      textOutput("calc_NPV1"),
+      h3("Second NPV"),
+      textOutput("calc_NPV2"),
+      #h3("IRR via extrapolation"),
+      plotlyOutput("extrapolatelot")
+```
+## Output plot
+
+```{r echo=FALSE, message=FALSE, warning = FALSE}
+cflows <- c(100,200,300,400,500)
+
+
+irr <- IRR(cf0=-1000,cf=c(100,200,300,400,500),times=c(1,2,3,4,5))
+
+df1 <- .10
+npv1 <- NPV(cf0=-1000,cf=c(100,200,300,400,500),times=c(1,2,3,4,5),df1)
+
+
+df2 <- .15
+npv2 <- NPV(cf0=-1000,cf=c(100,200,300,400,500),times=c(1,2,3,4,5),df2)
+
+
+library(plotly)
+df1 <- (df1 * 100)
+df2 <- (df2 * 100)
+#df <- data.frame(x,y)
+df <- data.frame(c(df1,df2),c(npv1,npv2))
+
+
+colnames(df) <- c("x","y")
+
+irr <- (irr *100)
+
+a <- list(
+  x = irr,
+  y = 0,
+  text = "Calculated IRR",
+  xref = "x",
+  yref = "y",
+  showarrow = TRUE,
+  arrowhead = 7,
+  ax = 40,
+  ay = -40
+)
+
+
+p <- plot_ly(df, x = ~x, y = ~y, type = 'scatter', mode = 'lines')  %>% 
+#  layout(title="IRR Calculation", xaxis=list(title="Discount Factor", range = c(0, 20)),
+  layout(title="IRR Calculation", xaxis=list(title="Discount Factor"), 
+         yaxis=list(title="NPV (+/-)"), annotations = a)
+
+p
+```
+

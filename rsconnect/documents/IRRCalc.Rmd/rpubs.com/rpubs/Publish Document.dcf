@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/342869/ad8adc573ee04f789f840607f6944b55
+bundleId: https://api.rpubs.com/api/v1/document/342869/ad8adc573ee04f789f840607f6944b55
+url: http://rpubs.com/mickbristow/342869
+when: 1513628899.05846

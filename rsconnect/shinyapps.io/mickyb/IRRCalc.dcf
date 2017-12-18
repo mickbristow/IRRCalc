@@ -1,0 +1,12 @@
+name: IRRCalc
+title: IRRCalc
+username:
+account: mickyb
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 249967
+bundleId: 1141431
+url: https://mickyb.shinyapps.io/IRRCalc/
+when: 1513625361.32886
+asMultiple: FALSE
+asStatic: FALSE
