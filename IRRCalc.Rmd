@@ -25,7 +25,8 @@ By adjusting the two discount factors used to be as close to the IRR, the two fi
 - Graph shows the interpolated IRR as well as the calculate IRR for comparison
 
 - The app is hosted at https://mickyb.shinyapps.io/IRRCalc2/
-- Source coded is at https://mickyb.shinyapps.io/IRRCalc2/
+- Source coded is at https://github.com/mickbristow/IRRCalc
+- RPubs documentation is at http://rpubs.com/mickbristow/342869
 
 ## Code snippets
 
